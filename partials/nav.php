@@ -10,7 +10,7 @@ $active  = $active  ?? 'home';
 $rootDir = $rootDir ?? '';   // '' for root pages, '../' for apps/
 ?>
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +21,11 @@ $rootDir = $rootDir ?? '';   // '' for root pages, '../' for apps/
 <nav>
     <a href="<?= $rootDir ?>index.php" class="brand">PHP<span>Portfolio</span></a>
     <ul class="nav-links">
-        <li><a href="<?= $rootDir ?>index.php"              <?= $active === 'home'       ? 'class="active"' : '' ?>>🏠 Головна</a></li>
-        <li><a href="<?= $rootDir ?>apps/calculator.php"    <?= $active === 'calculator' ? 'class="active"' : '' ?>>🧮 Калькулятор</a></li>
-        <li><a href="<?= $rootDir ?>apps/todo.php"          <?= $active === 'todo'       ? 'class="active"' : '' ?>>📋 Завдання</a></li>
-        <li><a href="<?= $rootDir ?>apps/quiz.php"          <?= $active === 'quiz'       ? 'class="active"' : '' ?>>🎯 Вікторина</a></li>
-        <li><a href="<?= $rootDir ?>apps/bmi.php"           <?= $active === 'bmi'        ? 'class="active"' : '' ?>>⚖️ ІМТ</a></li>
-        <li><a href="<?= $rootDir ?>apps/converter.php"     <?= $active === 'converter'  ? 'class="active"' : '' ?>>🔄 Конвертер</a></li>
+        <li><a href="<?= $rootDir ?>index.php"              <?= $active === 'home'       ? 'class="active"' : '' ?>>🏠 Home</a></li>
+        <li><a href="<?= $rootDir ?>apps/calculator.php"    <?= $active === 'calculator' ? 'class="active"' : '' ?>>🧮 Insait Calculator</a></li>
+        <li><a href="<?= $rootDir ?>apps/todo.php"          <?= $active === 'todo'       ? 'class="active"' : '' ?>>📋 Insait Tasks</a></li>
+        <li><a href="<?= $rootDir ?>apps/quiz.php"          <?= $active === 'quiz'       ? 'class="active"' : '' ?>>🎯 Insait Quiz</a></li>
+        <li><a href="<?= $rootDir ?>apps/bmi.php"           <?= $active === 'bmi'        ? 'class="active"' : '' ?>>⚖️ Insait BMI</a></li>
+        <li><a href="<?= $rootDir ?>apps/converter.php"     <?= $active === 'converter'  ? 'class="active"' : '' ?>>🔄 Insait Converter</a></li>
     </ul>
 </nav>

@@ -6,25 +6,25 @@ session_start();
 
 // Question bank
 $questions = [
-    ['q' => 'Яке розширення файлів PHP?',
+    ['q' => 'What is the file extension for PHP files?',
      'a' => ['.php', '.html', '.py', '.js'], 'correct' => 0],
-    ['q' => 'Який символ починає змінні в PHP?',
+    ['q' => 'Which character starts variables in PHP?',
      'a' => ['#', '@', '$', '&'], 'correct' => 2],
-    ['q' => 'Яка функція виводить текст у PHP?',
+    ['q' => 'Which function outputs text in PHP?',
      'a' => ['print_text()', 'echo', 'console.log()', 'printf_out()'], 'correct' => 1],
-    ['q' => 'Яка супер-глобальна змінна містить POST-дані?',
+    ['q' => 'Which superglobal contains POST data?',
      'a' => ['$_GET', '$_POST', '$_REQUEST', '$_DATA'], 'correct' => 1],
-    ['q' => 'Як розпочати PHP-блок?',
+    ['q' => 'How do you start a PHP block?',
      'a' => ['<php>', '<?php', '<%', '<script php>'], 'correct' => 1],
-    ['q' => 'Яка функція підраховує елементи масиву?',
+    ['q' => 'Which function counts array elements?',
      'a' => ['size()', 'length()', 'count()', 'sizeof()'], 'correct' => 2],
-    ['q' => 'Який оператор об\'єднує рядки у PHP?',
+    ['q' => 'Which operator concatenates strings in PHP?',
      'a' => ['+', '.', '&', '||'], 'correct' => 1],
-    ['q' => 'Яка функція запускає сесію?',
+    ['q' => 'Which function starts a session?',
      'a' => ['start_session()', 'session_begin()', 'session_start()', 'init_session()'], 'correct' => 2],
-    ['q' => 'Що виведе PHP: echo 5 + "3 яблука"?',
-     'a' => ['Помилка', '8', '53', '5'], 'correct' => 1],
-    ['q' => 'Яке ключове слово оголошує функцію в PHP?',
+    ['q' => 'What does PHP output: echo 5 + "3 apples"?',
+     'a' => ['Error', '8', '53', '5'], 'correct' => 1],
+    ['q' => 'Which keyword declares a function in PHP?',
      'a' => ['def', 'fun', 'function', 'func'], 'correct' => 2],
 ];
 
@@ -47,7 +47,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $qIdx   = $quiz['current'];
 
         if ($chosen < 0 || $chosen >= count($questions[$qIdx]['a'])) {
-            $message = 'Оберіть варіант відповіді!';
+            $message = 'Please select an answer!';
             $msgType = 'danger';
         } else {
             $correct = $questions[$qIdx]['correct'];
@@ -66,7 +66,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     }
 }
 
-$pageTitle = 'Вікторина | PHP Portfolio';
+$pageTitle = 'Insait Quiz | PHP Portfolio';
 $active    = 'quiz';
 $rootDir   = '../';
 
@@ -74,8 +74,8 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🎯 PHP Вікторина</h1>
-    <p>Перевірте свої знання PHP — <?= $totalQ ?> запитань</p>
+    <h1>🎯 Insait Quiz</h1>
+    <p>Test your PHP knowledge — <?= $totalQ ?> questions</p>
 </section>
 
 <main style="max-width:680px">
@@ -90,23 +90,23 @@ require __DIR__ . '/../partials/nav.php';
         <div style="height:100%;width:<?= $pct ?>%;background:linear-gradient(90deg,var(--orange),var(--purple-light));border-radius:99px;transition:width 0.4s"></div>
     </div>
     <p style="text-align:center;color:var(--text-muted);margin-bottom:1.5rem">
-        Питання <?= min($quiz['current'] + 1, $totalQ) ?> з <?= $totalQ ?> &nbsp;·&nbsp; Бали: <?= $quiz['score'] ?>
+        Question <?= min($quiz['current'] + 1, $totalQ) ?> of <?= $totalQ ?> &nbsp;·&nbsp; Score: <?= $quiz['score'] ?>
     </p>
 
     <?php if ($quiz['finished']): ?>
         <!-- Results screen -->
         <div class="card text-center">
-            <h2>🏆 Результати</h2>
+            <h2>🏆 Results</h2>
             <div class="result-box" style="font-size:2.5rem;margin:1.5rem 0">
                 <?= $quiz['score'] ?> / <?= $totalQ ?>
             </div>
             <?php $pctScore = round(($quiz['score'] / $totalQ) * 100); ?>
             <?php if ($pctScore >= 80): ?>
-                <p>🌟 Чудово! Ви PHP-гуру!</p>
+                <p>🌟 Excellent! You're a PHP guru!</p>
             <?php elseif ($pctScore >= 50): ?>
-                <p>👍 Непогано! Є куди рости.</p>
+                <p>👍 Not bad! Keep practising.</p>
             <?php else: ?>
-                <p>📚 Варто повторити PHP!</p>
+                <p>📚 Time to brush up on PHP!</p>
             <?php endif; ?>
 
             <div class="mt-3" style="text-align:left">
@@ -118,8 +118,8 @@ require __DIR__ . '/../partials/nav.php';
                             <?php if ($ans['right']): ?>
                                 <span style="color:#00c864">✓ <?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
                             <?php else: ?>
-                                <span style="color:#ff6060">✗ Ваша відповідь: <?= htmlspecialchars($q['a'][$ans['chosen']]) ?></span><br>
-                                <span style="color:#00c864">✓ Правильно: <?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
+                                <span style="color:#ff6060">✗ Your answer: <?= htmlspecialchars($q['a'][$ans['chosen']]) ?></span><br>
+                                <span style="color:#00c864">✓ Correct: <?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
@@ -128,7 +128,7 @@ require __DIR__ . '/../partials/nav.php';
 
             <form method="POST" class="mt-3">
                 <input type="hidden" name="action" value="restart">
-                <button type="submit" class="btn btn-primary">🔄 Пройти знову</button>
+                <button type="submit" class="btn btn-primary">🔄 Try Again</button>
             </form>
         </div>
 
@@ -136,7 +136,7 @@ require __DIR__ . '/../partials/nav.php';
         <!-- Question screen -->
         <?php $qIdx = $quiz['current']; $q = $questions[$qIdx]; ?>
         <div class="card">
-            <h2>Питання <?= $qIdx + 1 ?></h2>
+            <h2>Question <?= $qIdx + 1 ?></h2>
             <p style="font-size:1.15rem;margin-bottom:1.5rem;color:var(--text-light)">
                 <?= htmlspecialchars($q['q']) ?>
             </p>
@@ -150,7 +150,7 @@ require __DIR__ . '/../partials/nav.php';
                     </label>
                 <?php endforeach; ?>
                 <div class="mt-2">
-                    <button type="submit" class="btn btn-primary">Відповісти →</button>
+                    <button type="submit" class="btn btn-primary">Answer →</button>
                 </div>
             </form>
         </div>

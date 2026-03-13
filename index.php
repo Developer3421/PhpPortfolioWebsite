@@ -4,7 +4,7 @@
  * Displays portfolio information and links to mini-apps.
  */
 
-$pageTitle = 'PHP Portfolio – Головна';
+$pageTitle = 'PHP Portfolio – Home';
 $active    = 'home';
 $rootDir   = '';
 
@@ -13,83 +13,104 @@ require __DIR__ . '/partials/nav.php';
 
 <section class="hero">
     <h1>PHP Portfolio</h1>
-    <p>Ласкаво просимо до мого PHP-портфоліо! Тут ви знайдете інформацію про мене та набір міні-додатків.</p>
+    <p>Welcome to my PHP portfolio! Here you will find information about me and a set of built-in mini-apps.</p>
 </section>
 
 <main>
 
     <!-- About -->
     <div class="card">
-        <h2>👤 Про мене</h2>
+        <h2>👤 About Me</h2>
         <p>
-            Привіт! Я PHP-розробник, що захоплюється створенням чистого, ефективного та масштабованого коду.
-            Цей сайт є моїм портфоліо та демонструє деякі з моїх навичок через набір міні-додатків.
+            Hi! I'm <strong>Developer3421</strong> — a developer passionate about building clean, efficient,
+            and scalable software across multiple platforms and languages.
+            This site is my PHP portfolio and showcases some of my web skills through a set of interactive mini-apps.
         </p>
         <p class="mt-1">
-            Проєкт побудований повністю на чистому PHP без зовнішніх фреймворків,
-            із власним CSS у помаранчево-фіолетовому стилі.
+            Beyond web development, I actively maintain the <strong>Insait</strong> suite of desktop tools
+            (text editor, video player, translator, drawing app) and the <strong>Vetale Browser</strong> —
+            a modern Windows browser with a highly customisable UI and optional local AI features.
+            The project is built entirely in plain PHP without external frameworks, with custom CSS in an orange-purple style.
         </p>
     </div>
 
     <!-- Skills -->
     <div class="card">
-        <h2>🛠️ Навички</h2>
+        <h2>🛠️ Skills</h2>
         <div class="skills-grid">
             <span class="skill-badge">PHP 8+</span>
+            <span class="skill-badge">C# / .NET</span>
+            <span class="skill-badge">WPF</span>
             <span class="skill-badge">HTML5</span>
             <span class="skill-badge">CSS3</span>
             <span class="skill-badge">JavaScript</span>
-            <span class="skill-badge">MySQL</span>
             <span class="skill-badge">Git</span>
-            <span class="skill-badge">REST API</span>
             <span class="skill-badge">OOP</span>
-            <span class="skill-badge">MVC</span>
-            <span class="skill-badge">Linux</span>
-            <span class="skill-badge">Composer</span>
+            <span class="skill-badge">Playwright</span>
+            <span class="skill-badge">MakeCode / micro:bit</span>
+            <span class="skill-badge">REST API</span>
             <span class="skill-badge">JSON</span>
         </div>
     </div>
 
     <!-- Projects -->
     <div class="card">
-        <h2>🚀 Проєкти</h2>
+        <h2>🚀 Projects</h2>
 
-        <h3>📂 PHP Portfolio Website</h3>
-        <p>Повноцінний портфоліо-сайт на чистому PHP з набором вбудованих міні-додатків.
-           Особливості: адаптивний дизайн, сесійний стан, валідація форм, помаранчево-фіолетова тема.</p>
+        <h3>🌐 PHP Portfolio Website</h3>
+        <p>A full portfolio site built in pure PHP with a set of built-in Insait mini-apps.
+           Features: responsive design, session state, form validation, and an orange-purple theme.</p>
 
-        <h3>🧮 Веб-калькулятор</h3>
-        <p>Інтерактивний калькулятор із підтримкою базових арифметичних операцій, реалізований на PHP та JavaScript.</p>
+        <h3>🖌️ Insait Draw</h3>
+        <p>A browser-based drawing application built with JavaScript, allowing freehand sketching directly in the browser.</p>
 
-        <h3>📋 Менеджер завдань</h3>
-        <p>Простий To-Do додаток із сесійним збереженням даних, можливістю додавати, відмічати та видаляти завдання.</p>
+        <h3>✏️ Insait Text Editor</h3>
+        <p>A lightweight text editor built in C# for quickly creating and editing plain-text files on Windows.</p>
 
-        <h3>🎯 PHP-вікторина</h3>
-        <p>Інтерактивна вікторина з PHP-питаннями, підрахунком балів та відзначенням правильних/неправильних відповідей.</p>
+        <h3>🎬 Insait Video Player</h3>
+        <p>A C# desktop video player with a clean interface for playback of local media files on Windows.</p>
 
-        <h3>⚖️ Калькулятор ІМТ</h3>
-        <p>Обчислення Індексу Маси Тіла з категоризацією та рекомендаціями щодо здоров'я.</p>
+        <h3>🌍 Insait Translator</h3>
+        <p>A C# application that assists with German language translation, aimed at learners and everyday use.</p>
 
-        <h3>🔄 Конвертер одиниць</h3>
-        <p>Конвертер для температури, довжини, ваги та об'єму між різними системами вимірювань.</p>
+        <h3>🌐 Vetale Browser</h3>
+        <p>A modern Windows browser with a highly customisable UI, power-user tab workflows, built-in tools,
+           and optional local AI. Includes automation (Playwright) and voice input features.
+           Available in Official, Legacy WPF, and SuperLite editions.</p>
+
+        <h3>🧮 VCalc</h3>
+        <p>A desktop calculator application built in C# for quick everyday calculations.</p>
+
+        <h3>⏱️ VRelaxTimer</h3>
+        <p>A relaxation and break timer app built in C# to help maintain healthy work habits.</p>
+
+        <h3>🗂️ File Manager</h3>
+        <p>A Windows file manager written in C# offering a clean alternative interface for file system navigation.</p>
+
+        <h3>✅ V-Task</h3>
+        <p>A task management application written in C# for organising and tracking personal to-do lists.</p>
+
+        <h3>🤖 micro:bit Projects</h3>
+        <p>A collection of embedded projects for the BBC micro:bit built with MakeCode, including a morse chat,
+           countdown timer, clap-activated lights, and interactive pet animations.</p>
     </div>
 
     <!-- Mini-apps shortcuts -->
     <div class="card">
-        <h2>🎮 Міні-додатки</h2>
-        <p class="mt-1">Перейдіть до одного з вбудованих PHP міні-додатків:</p>
+        <h2>🎮 Mini-Apps</h2>
+        <p class="mt-1">Try one of the built-in PHP Insait mini-apps:</p>
         <div class="flex-row mt-2">
-            <a href="apps/calculator.php" class="btn btn-primary">🧮 Калькулятор</a>
-            <a href="apps/todo.php"       class="btn btn-secondary">📋 Завдання</a>
-            <a href="apps/quiz.php"       class="btn btn-primary">🎯 Вікторина</a>
-            <a href="apps/bmi.php"        class="btn btn-secondary">⚖️ ІМТ</a>
-            <a href="apps/converter.php"  class="btn btn-primary">🔄 Конвертер</a>
+            <a href="apps/calculator.php" class="btn btn-primary">🧮 Insait Calculator</a>
+            <a href="apps/todo.php"       class="btn btn-secondary">📋 Insait Tasks</a>
+            <a href="apps/quiz.php"       class="btn btn-primary">🎯 Insait Quiz</a>
+            <a href="apps/bmi.php"        class="btn btn-secondary">⚖️ Insait BMI</a>
+            <a href="apps/converter.php"  class="btn btn-primary">🔄 Insait Converter</a>
         </div>
     </div>
 
     <!-- Contact -->
     <div class="card">
-        <h2>📬 Контакти</h2>
+        <h2>📬 Contact</h2>
         <ul>
             <li>GitHub: <a href="https://github.com/Developer3421" target="_blank" style="color:var(--orange-light)">Developer3421</a></li>
             <li>Email: developer3421@example.com</li>
@@ -98,7 +119,7 @@ require __DIR__ . '/partials/nav.php';
 
     <!-- Repo info from README -->
     <div class="card">
-        <h2>📄 README репозиторію</h2>
+        <h2>📄 Repository README</h2>
         <?php
         $readmePath = __DIR__ . '/README.md';
         if (file_exists($readmePath)) {
@@ -114,7 +135,7 @@ require __DIR__ . '/partials/nav.php';
             $content = nl2br($content);
             echo '<div style="color:var(--text-muted)">' . $content . '</div>';
         } else {
-            echo '<p style="color:var(--text-muted)">README.md не знайдено.</p>';
+            echo '<p style="color:var(--text-muted)">README.md not found.</p>';
         }
         ?>
     </div>

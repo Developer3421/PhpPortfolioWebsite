@@ -2,7 +2,7 @@
 /**
  * apps/calculator.php – Interactive calculator mini-app
  */
-$pageTitle = 'Калькулятор | PHP Portfolio';
+$pageTitle = 'Insait Calculator | PHP Portfolio';
 $active    = 'calculator';
 $rootDir   = '../';
 
@@ -10,8 +10,8 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🧮 Калькулятор</h1>
-    <p>Простий калькулятор із базовими арифметичними операціями</p>
+    <h1>🧮 Insait Calculator</h1>
+    <p>A simple calculator with basic arithmetic operations</p>
 </section>
 
 <main style="max-width:440px">
@@ -90,13 +90,13 @@ require __DIR__ . '/../partials/nav.php';
             // Tokenise into numbers and operators, then evaluate respecting
             // operator precedence via two-pass shunting (*, /, % before +, -).
             var result = safeCalc(fullExpr);
-            if (result === null || !isFinite(result)) { currentVal = 'Помилка'; }
+            if (result === null || !isFinite(result)) { currentVal = 'Error'; }
             else {
                 result = parseFloat(result.toPrecision(12));
                 currentVal = String(result);
             }
         } catch (e) {
-            currentVal = 'Помилка';
+            currentVal = 'Error';
         }
         exprEl.textContent = fullExpr + ' =';
         display.textContent = currentVal;
