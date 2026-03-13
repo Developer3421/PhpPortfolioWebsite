@@ -5,19 +5,19 @@
 
 $categories = [
     'temperature' => [
-        'label' => '🌡️ Температура',
+        'label' => '🌡️ Temperature',
         'units' => ['Celsius', 'Fahrenheit', 'Kelvin'],
     ],
     'length' => [
-        'label' => '📏 Довжина',
+        'label' => '📏 Length',
         'units' => ['Metres', 'Kilometres', 'Miles', 'Feet', 'Inches', 'Centimetres'],
     ],
     'weight' => [
-        'label' => '⚖️ Вага',
+        'label' => '⚖️ Weight',
         'units' => ['Kilograms', 'Grams', 'Pounds', 'Ounces', 'Tonnes'],
     ],
     'volume' => [
-        'label' => '🧴 Об\'єм',
+        'label' => '🧴 Volume',
         'units' => ['Litres', 'Millilitres', 'Gallons (US)', 'Fluid Ounces (US)', 'Cubic Metres'],
     ],
 ];
@@ -108,13 +108,13 @@ $inputVal   = $_POST['value']     ?? '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     if (!array_key_exists($selCat, $categories)) {
-        $error = 'Невідома категорія.';
+        $error = 'Unknown category.';
     } elseif (!is_numeric($inputVal)) {
-        $error = 'Введіть числове значення.';
+        $error = 'Please enter a numeric value.';
     } else {
         $units = $categories[$selCat]['units'];
         if (!in_array($selFrom, $units, true) || !in_array($selTo, $units, true)) {
-            $error = 'Оберіть одиниці вимірювання.';
+            $error = 'Please select valid units.';
         } else {
             $base   = toBase((float)$inputVal, $selFrom, $selCat);
             $output = fromBase($base, $selTo, $selCat);
@@ -134,7 +134,7 @@ if (!$selFrom && isset($categories[$selCat])) {
     $selTo   = $categories[$selCat]['units'][1];
 }
 
-$pageTitle = 'Конвертер | PHP Portfolio';
+$pageTitle = 'Insait Converter | PHP Portfolio';
 $active    = 'converter';
 $rootDir   = '../';
 
@@ -142,13 +142,13 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🔄 Конвертер одиниць</h1>
-    <p>Конвертуйте температуру, довжину, вагу та об'єм</p>
+    <h1>🔄 Insait Converter</h1>
+    <p>Convert temperature, length, weight and volume</p>
 </section>
 
 <main style="max-width:580px">
     <div class="card">
-        <h2>Параметри конвертації</h2>
+        <h2>Conversion settings</h2>
 
         <?php if ($error): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
@@ -156,7 +156,7 @@ require __DIR__ . '/../partials/nav.php';
 
         <form method="POST" id="convForm">
             <div class="form-group">
-                <label for="category">Категорія</label>
+                <label for="category">Category</label>
                 <select id="category" name="category" onchange="updateUnits()">
                     <?php foreach ($categories as $key => $cat): ?>
                         <option value="<?= $key ?>" <?= $selCat === $key ? 'selected' : '' ?>>
@@ -167,17 +167,17 @@ require __DIR__ . '/../partials/nav.php';
             </div>
 
             <div class="form-group">
-                <label for="value">Значення</label>
+                <label for="value">Value</label>
                 <input type="number" id="value" name="value"
                        step="any"
-                       placeholder="Введіть значення…"
+                       placeholder="Enter value…"
                        value="<?= htmlspecialchars($inputVal) ?>"
                        required>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
                 <div class="form-group">
-                    <label for="from_unit">З</label>
+                    <label for="from_unit">From</label>
                     <select id="from_unit" name="from_unit">
                         <?php
                         foreach ($categories[$selCat]['units'] as $u):
@@ -190,7 +190,7 @@ require __DIR__ . '/../partials/nav.php';
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="to_unit">В</label>
+                    <label for="to_unit">To</label>
                     <select id="to_unit" name="to_unit">
                         <?php
                         foreach ($categories[$selCat]['units'] as $u):
@@ -204,13 +204,13 @@ require __DIR__ . '/../partials/nav.php';
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Конвертувати</button>
+            <button type="submit" class="btn btn-primary">Convert</button>
         </form>
     </div>
 
     <?php if ($result): ?>
         <div class="card text-center">
-            <h2>Результат</h2>
+            <h2>Result</h2>
             <div class="result-box">
                 <?= rtrim(rtrim(number_format($result['input'], 6, '.', ''), '0'), '.') ?>
                 <?= htmlspecialchars($result['from']) ?>

@@ -15,7 +15,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $height = trim($_POST['height'] ?? '');
 
     if (!is_numeric($weight) || !is_numeric($height)) {
-        $error = 'Будь ласка, введіть числові значення.';
+        $error = 'Please enter numeric values.';
     } else {
         $w = (float)$weight;
         $h = (float)$height;
@@ -29,30 +29,30 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         }
 
         if ($w <= 0 || $h <= 0) {
-            $error = 'Значення мають бути більше нуля.';
+            $error = 'Values must be greater than zero.';
         } elseif ($w > 600 || $h > 3) {
-            $error = 'Введіть реалістичні значення.';
+            $error = 'Please enter realistic values.';
         } else {
             $bmi = $w / ($h * $h);
             if ($bmi < 18.5) {
-                $cat   = 'Недостатня вага';
+                $cat   = 'Underweight';
                 $color = '#5bceff';
-                $tip   = 'Розгляньте збалансоване харчування для набору ваги.';
+                $tip   = 'Consider a balanced diet to gain weight.';
                 $emoji = '🔵';
             } elseif ($bmi < 25) {
-                $cat   = 'Нормальна вага';
+                $cat   = 'Normal weight';
                 $color = '#00c864';
-                $tip   = 'Чудово! Підтримуйте здоровий спосіб життя.';
+                $tip   = 'Great! Keep up the healthy lifestyle.';
                 $emoji = '🟢';
             } elseif ($bmi < 30) {
-                $cat   = 'Надмірна вага';
+                $cat   = 'Overweight';
                 $color = '#ffb300';
-                $tip   = 'Рекомендуються регулярні фізичні вправи та дієта.';
+                $tip   = 'Regular exercise and a balanced diet are recommended.';
                 $emoji = '🟡';
             } else {
-                $cat   = 'Ожиріння';
+                $cat   = 'Obese';
                 $color = '#ff4040';
-                $tip   = 'Зверніться до лікаря для отримання рекомендацій.';
+                $tip   = 'Please consult a doctor for personalised advice.';
                 $emoji = '🔴';
             }
             $result = compact('bmi', 'cat', 'color', 'tip', 'emoji');
@@ -60,7 +60,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     }
 }
 
-$pageTitle = 'ІМТ | PHP Portfolio';
+$pageTitle = 'Insait BMI | PHP Portfolio';
 $active    = 'bmi';
 $rootDir   = '../';
 
@@ -68,13 +68,13 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>⚖️ Калькулятор ІМТ</h1>
-    <p>Розрахуйте свій Індекс Маси Тіла (ІМТ / BMI)</p>
+    <h1>⚖️ Insait BMI</h1>
+    <p>Calculate your Body Mass Index (BMI)</p>
 </section>
 
 <main style="max-width:560px">
     <div class="card">
-        <h2>Введіть дані</h2>
+        <h2>Enter your details</h2>
 
         <?php if ($error): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
@@ -82,42 +82,42 @@ require __DIR__ . '/../partials/nav.php';
 
         <form method="POST">
             <div class="form-group">
-                <label for="unit">Система вимірювань</label>
+                <label for="unit">Measurement system</label>
                 <select id="unit" name="unit" onchange="updateLabels()">
-                    <option value="metric"   <?= $unit === 'metric'   ? 'selected' : '' ?>>Метрична (кг / см)</option>
-                    <option value="imperial" <?= $unit === 'imperial' ? 'selected' : '' ?>>Імперська (lbs / inch)</option>
+                    <option value="metric"   <?= $unit === 'metric'   ? 'selected' : '' ?>>Metric (kg / cm)</option>
+                    <option value="imperial" <?= $unit === 'imperial' ? 'selected' : '' ?>>Imperial (lbs / inches)</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="weight" id="weightLabel">
-                    Вага (кг)
+                    Weight (kg)
                 </label>
                 <input type="number" id="weight" name="weight"
                        step="0.1" min="1" max="999"
-                       placeholder="напр. 70"
+                       placeholder="e.g. 70"
                        value="<?= htmlspecialchars($weight) ?>"
                        required>
             </div>
 
             <div class="form-group">
                 <label for="height" id="heightLabel">
-                    Зріст (см)
+                    Height (cm)
                 </label>
                 <input type="number" id="height" name="height"
                        step="0.1" min="1" max="999"
-                       placeholder="напр. 175"
+                       placeholder="e.g. 175"
                        value="<?= htmlspecialchars($height) ?>"
                        required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Розрахувати ІМТ</button>
+            <button type="submit" class="btn btn-primary">Calculate BMI</button>
         </form>
     </div>
 
     <?php if ($result): ?>
         <div class="card text-center">
-            <h2>Результат</h2>
+            <h2>Result</h2>
             <div class="result-box" style="font-size:3rem;color:<?= $result['color'] ?>">
                 <?= number_format($result['bmi'], 1) ?>
             </div>
@@ -129,23 +129,23 @@ require __DIR__ . '/../partials/nav.php';
 
             <!-- BMI scale -->
             <div style="margin-top:1.5rem;text-align:left">
-                <p style="color:var(--text-muted);margin-bottom:0.5rem;font-size:0.88rem">Шкала ІМТ:</p>
+                <p style="color:var(--text-muted);margin-bottom:0.5rem;font-size:0.88rem">BMI Scale:</p>
                 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.4rem;font-size:0.82rem;text-align:center">
                     <div style="background:rgba(91,206,255,0.2);border-radius:6px;padding:0.4rem">
                         <div style="color:#5bceff;font-weight:700">&lt; 18.5</div>
-                        <div style="color:var(--text-muted)">Недостатня</div>
+                        <div style="color:var(--text-muted)">Underweight</div>
                     </div>
                     <div style="background:rgba(0,200,100,0.2);border-radius:6px;padding:0.4rem">
                         <div style="color:#00c864;font-weight:700">18.5–24.9</div>
-                        <div style="color:var(--text-muted)">Норма</div>
+                        <div style="color:var(--text-muted)">Normal</div>
                     </div>
                     <div style="background:rgba(255,179,0,0.2);border-radius:6px;padding:0.4rem">
                         <div style="color:#ffb300;font-weight:700">25–29.9</div>
-                        <div style="color:var(--text-muted)">Надлишок</div>
+                        <div style="color:var(--text-muted)">Overweight</div>
                     </div>
                     <div style="background:rgba(255,64,64,0.2);border-radius:6px;padding:0.4rem">
                         <div style="color:#ff4040;font-weight:700">≥ 30</div>
-                        <div style="color:var(--text-muted)">Ожиріння</div>
+                        <div style="color:var(--text-muted)">Obese</div>
                     </div>
                 </div>
             </div>
@@ -157,9 +157,9 @@ require __DIR__ . '/../partials/nav.php';
 function updateLabels() {
     var unit = document.getElementById('unit').value;
     document.getElementById('weightLabel').textContent =
-        unit === 'imperial' ? 'Вага (фунти / lbs)' : 'Вага (кг)';
+        unit === 'imperial' ? 'Weight (lbs)' : 'Weight (kg)';
     document.getElementById('heightLabel').textContent =
-        unit === 'imperial' ? 'Зріст (дюйми / inches)' : 'Зріст (см)';
+        unit === 'imperial' ? 'Height (inches)' : 'Height (cm)';
 }
 // Set correct labels on page load
 updateLabels();
