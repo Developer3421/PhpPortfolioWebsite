@@ -2,6 +2,25 @@
 /**
  * apps/calculator.php – Interactive calculator mini-app
  */
+session_start();
+
+// ── Language ────────────────────────────────────────────────
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'de'], true)) {
+    $_SESSION['lang'] = $_GET['lang'];
+}
+$lang = $_SESSION['lang'] ?? 'en';
+
+$t = [
+    'en' => [
+        'hero_sub' => 'A simple calculator with basic arithmetic operations',
+        'error'    => 'Error',
+    ],
+    'de' => [
+        'hero_sub' => 'Einfacher Taschenrechner mit grundlegenden arithmetischen Operationen',
+        'error'    => 'Fehler',
+    ],
+][$lang];
+
 $pageTitle = 'Insait Calculator | PHP Portfolio';
 $active    = 'calculator';
 $rootDir   = '../';
@@ -11,7 +30,7 @@ require __DIR__ . '/../partials/nav.php';
 
 <section class="hero">
     <h1>🧮 Insait Calculator</h1>
-    <p>A simple calculator with basic arithmetic operations</p>
+    <p><?= $t['hero_sub'] ?></p>
 </section>
 
 <main style="max-width:440px">
@@ -90,13 +109,13 @@ require __DIR__ . '/../partials/nav.php';
             // Tokenise into numbers and operators, then evaluate respecting
             // operator precedence via two-pass shunting (*, /, % before +, -).
             var result = safeCalc(fullExpr);
-            if (result === null || !isFinite(result)) { currentVal = 'Error'; }
+            if (result === null || !isFinite(result)) { currentVal = '<?= $t['error'] ?>'; }
             else {
                 result = parseFloat(result.toPrecision(12));
                 currentVal = String(result);
             }
         } catch (e) {
-            currentVal = 'Error';
+            currentVal = '<?= $t['error'] ?>';
         }
         exprEl.textContent = fullExpr + ' =';
         display.textContent = currentVal;

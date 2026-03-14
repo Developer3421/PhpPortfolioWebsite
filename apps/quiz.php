@@ -4,40 +4,103 @@
  */
 session_start();
 
-// Question bank
-$questions = [
-    ['q' => 'What is the file extension for PHP files?',
-     'a' => ['.php', '.html', '.py', '.js'], 'correct' => 0],
-    ['q' => 'Which character starts variables in PHP?',
-     'a' => ['#', '@', '$', '&'], 'correct' => 2],
-    ['q' => 'Which function outputs text in PHP?',
-     'a' => ['print_text()', 'echo', 'console.log()', 'printf_out()'], 'correct' => 1],
-    ['q' => 'Which superglobal contains POST data?',
-     'a' => ['$_GET', '$_POST', '$_REQUEST', '$_DATA'], 'correct' => 1],
-    ['q' => 'How do you start a PHP block?',
-     'a' => ['<php>', '<?php', '<%', '<script php>'], 'correct' => 1],
-    ['q' => 'Which function counts array elements?',
-     'a' => ['size()', 'length()', 'count()', 'sizeof()'], 'correct' => 2],
-    ['q' => 'Which operator concatenates strings in PHP?',
-     'a' => ['+', '.', '&', '||'], 'correct' => 1],
-    ['q' => 'Which function starts a session?',
-     'a' => ['start_session()', 'session_begin()', 'session_start()', 'init_session()'], 'correct' => 2],
-    ['q' => 'What does PHP output: echo 5 + "3 apples"?',
-     'a' => ['Error', '8', '53', '5'], 'correct' => 1],
-    ['q' => 'Which keyword declares a function in PHP?',
-     'a' => ['def', 'fun', 'function', 'func'], 'correct' => 2],
-];
+// ── Language ────────────────────────────────────────────────
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['en', 'de'], true)) {
+    $_SESSION['lang'] = $_GET['lang'];
+}
+$lang = $_SESSION['lang'] ?? 'en';
 
-// Session quiz state
+$t = [
+    'en' => [
+        'hero_sub'      => 'Test your PHP knowledge',
+        'question'      => 'Question',
+        'of'            => 'of',
+        'score'         => 'Score',
+        'results'       => '🏆 Results',
+        'excellent'     => '🌟 Excellent! You\'re a PHP guru!',
+        'not_bad'       => '👍 Not bad! Keep practising.',
+        'brush_up'      => '📚 Time to brush up on PHP!',
+        'try_again'     => '🔄 Try Again',
+        'answer_btn'    => 'Answer →',
+        'select_answer' => 'Please select an answer!',
+        'your_answer'   => '✗ Your answer: ',
+        'correct'       => '✓ Correct: ',
+    ],
+    'de' => [
+        'hero_sub'      => 'Teste dein PHP-Wissen',
+        'question'      => 'Frage',
+        'of'            => 'von',
+        'score'         => 'Punkte',
+        'results'       => '🏆 Ergebnisse',
+        'excellent'     => '🌟 Ausgezeichnet! Du bist ein PHP-Guru!',
+        'not_bad'       => '👍 Nicht schlecht! Übe weiter.',
+        'brush_up'      => '📚 Zeit, PHP aufzufrischen!',
+        'try_again'     => '🔄 Nochmal versuchen',
+        'answer_btn'    => 'Antworten →',
+        'select_answer' => 'Bitte eine Antwort auswählen!',
+        'your_answer'   => '✗ Deine Antwort: ',
+        'correct'       => '✓ Richtig: ',
+    ],
+][$lang];
+
+// ── Question bank ────────────────────────────────────────────
+$questionBank = [
+    'en' => [
+        ['q' => 'What is the file extension for PHP files?',
+         'a' => ['.php', '.html', '.py', '.js'], 'correct' => 0],
+        ['q' => 'Which character starts variables in PHP?',
+         'a' => ['#', '@', '$', '&'], 'correct' => 2],
+        ['q' => 'Which function outputs text in PHP?',
+         'a' => ['print_text()', 'echo', 'console.log()', 'printf_out()'], 'correct' => 1],
+        ['q' => 'Which superglobal contains POST data?',
+         'a' => ['$_GET', '$_POST', '$_REQUEST', '$_DATA'], 'correct' => 1],
+        ['q' => 'How do you start a PHP block?',
+         'a' => ['<php>', '<?php', '<%', '<script php>'], 'correct' => 1],
+        ['q' => 'Which function counts array elements?',
+         'a' => ['size()', 'length()', 'count()', 'sizeof()'], 'correct' => 2],
+        ['q' => 'Which operator concatenates strings in PHP?',
+         'a' => ['+', '.', '&', '||'], 'correct' => 1],
+        ['q' => 'Which function starts a session?',
+         'a' => ['start_session()', 'session_begin()', 'session_start()', 'init_session()'], 'correct' => 2],
+        ['q' => 'What does PHP output: echo 5 + "3 apples"?',
+         'a' => ['Error', '8', '53', '5'], 'correct' => 1],
+        ['q' => 'Which keyword declares a function in PHP?',
+         'a' => ['def', 'fun', 'function', 'func'], 'correct' => 2],
+    ],
+    'de' => [
+        ['q' => 'Was ist die Dateiendung für PHP-Dateien?',
+         'a' => ['.php', '.html', '.py', '.js'], 'correct' => 0],
+        ['q' => 'Welches Zeichen beginnt Variablen in PHP?',
+         'a' => ['#', '@', '$', '&'], 'correct' => 2],
+        ['q' => 'Welche Funktion gibt Text in PHP aus?',
+         'a' => ['print_text()', 'echo', 'console.log()', 'printf_out()'], 'correct' => 1],
+        ['q' => 'Welche Superglobale enthält POST-Daten?',
+         'a' => ['$_GET', '$_POST', '$_REQUEST', '$_DATA'], 'correct' => 1],
+        ['q' => 'Wie beginnt man einen PHP-Block?',
+         'a' => ['<php>', '<?php', '<%', '<script php>'], 'correct' => 1],
+        ['q' => 'Welche Funktion zählt Array-Elemente?',
+         'a' => ['size()', 'length()', 'count()', 'sizeof()'], 'correct' => 2],
+        ['q' => 'Welcher Operator verbindet Strings in PHP?',
+         'a' => ['+', '.', '&', '||'], 'correct' => 1],
+        ['q' => 'Welche Funktion startet eine Session?',
+         'a' => ['start_session()', 'session_begin()', 'session_start()', 'init_session()'], 'correct' => 2],
+        ['q' => 'Was gibt PHP aus: echo 5 + "3 Äpfel"?',
+         'a' => ['Fehler', '8', '53', '5'], 'correct' => 1],
+        ['q' => 'Welches Schlüsselwort deklariert eine Funktion in PHP?',
+         'a' => ['def', 'fun', 'function', 'func'], 'correct' => 2],
+    ],
+];
+$questions = $questionBank[$lang];
+
+// ── Session quiz state ───────────────────────────────────────
 if (!isset($_SESSION['quiz'])) {
     $_SESSION['quiz'] = ['current' => 0, 'score' => 0, 'answers' => [], 'finished' => false];
 }
 $quiz = &$_SESSION['quiz'];
 
-$totalQ    = count($questions);
-$message   = '';
-$msgType   = '';
-$showResult = null;
+$totalQ     = count($questions);
+$message    = '';
+$msgType    = '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -47,7 +110,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $qIdx   = $quiz['current'];
 
         if ($chosen < 0 || $chosen >= count($questions[$qIdx]['a'])) {
-            $message = 'Please select an answer!';
+            $message = $t['select_answer'];
             $msgType = 'danger';
         } else {
             $correct = $questions[$qIdx]['correct'];
@@ -75,7 +138,7 @@ require __DIR__ . '/../partials/nav.php';
 
 <section class="hero">
     <h1>🎯 Insait Quiz</h1>
-    <p>Test your PHP knowledge — <?= $totalQ ?> questions</p>
+    <p><?= $t['hero_sub'] ?> — <?= $totalQ ?> <?= $lang === 'de' ? 'Fragen' : 'questions' ?></p>
 </section>
 
 <main style="max-width:680px">
@@ -90,23 +153,23 @@ require __DIR__ . '/../partials/nav.php';
         <div style="height:100%;width:<?= $pct ?>%;background:linear-gradient(90deg,var(--orange),var(--purple-light));border-radius:99px;transition:width 0.4s"></div>
     </div>
     <p style="text-align:center;color:var(--text-muted);margin-bottom:1.5rem">
-        Question <?= min($quiz['current'] + 1, $totalQ) ?> of <?= $totalQ ?> &nbsp;·&nbsp; Score: <?= $quiz['score'] ?>
+        <?= $t['question'] ?> <?= min($quiz['current'] + 1, $totalQ) ?> <?= $t['of'] ?> <?= $totalQ ?>
+        &nbsp;·&nbsp; <?= $t['score'] ?>: <?= $quiz['score'] ?>
     </p>
 
     <?php if ($quiz['finished']): ?>
-        <!-- Results screen -->
         <div class="card text-center">
-            <h2>🏆 Results</h2>
+            <h2><?= $t['results'] ?></h2>
             <div class="result-box" style="font-size:2.5rem;margin:1.5rem 0">
                 <?= $quiz['score'] ?> / <?= $totalQ ?>
             </div>
             <?php $pctScore = round(($quiz['score'] / $totalQ) * 100); ?>
             <?php if ($pctScore >= 80): ?>
-                <p>🌟 Excellent! You're a PHP guru!</p>
+                <p><?= $t['excellent'] ?></p>
             <?php elseif ($pctScore >= 50): ?>
-                <p>👍 Not bad! Keep practising.</p>
+                <p><?= $t['not_bad'] ?></p>
             <?php else: ?>
-                <p>📚 Time to brush up on PHP!</p>
+                <p><?= $t['brush_up'] ?></p>
             <?php endif; ?>
 
             <div class="mt-3" style="text-align:left">
@@ -118,8 +181,8 @@ require __DIR__ . '/../partials/nav.php';
                             <?php if ($ans['right']): ?>
                                 <span style="color:#00c864">✓ <?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
                             <?php else: ?>
-                                <span style="color:#ff6060">✗ Your answer: <?= htmlspecialchars($q['a'][$ans['chosen']]) ?></span><br>
-                                <span style="color:#00c864">✓ Correct: <?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
+                                <span style="color:#ff6060"><?= $t['your_answer'] ?><?= htmlspecialchars($q['a'][$ans['chosen']]) ?></span><br>
+                                <span style="color:#00c864"><?= $t['correct'] ?><?= htmlspecialchars($q['a'][$ans['correct']]) ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
@@ -128,15 +191,14 @@ require __DIR__ . '/../partials/nav.php';
 
             <form method="POST" class="mt-3">
                 <input type="hidden" name="action" value="restart">
-                <button type="submit" class="btn btn-primary">🔄 Try Again</button>
+                <button type="submit" class="btn btn-primary"><?= $t['try_again'] ?></button>
             </form>
         </div>
 
     <?php else: ?>
-        <!-- Question screen -->
         <?php $qIdx = $quiz['current']; $q = $questions[$qIdx]; ?>
         <div class="card">
-            <h2>Question <?= $qIdx + 1 ?></h2>
+            <h2><?= $t['question'] ?> <?= $qIdx + 1 ?></h2>
             <p style="font-size:1.15rem;margin-bottom:1.5rem;color:var(--text-light)">
                 <?= htmlspecialchars($q['q']) ?>
             </p>
@@ -150,7 +212,7 @@ require __DIR__ . '/../partials/nav.php';
                     </label>
                 <?php endforeach; ?>
                 <div class="mt-2">
-                    <button type="submit" class="btn btn-primary">Answer →</button>
+                    <button type="submit" class="btn btn-primary"><?= $t['answer_btn'] ?></button>
                 </div>
             </form>
         </div>

@@ -50,6 +50,14 @@ nav .brand {
 
 nav .brand span { color: var(--orange-light); }
 
+.brand-author {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+    padding-right: 0.5rem;
+    align-self: center;
+}
+
 .nav-links {
     display: flex;
     flex-wrap: wrap;
@@ -324,6 +332,35 @@ footer {
 }
 
 footer a { color: var(--orange-light); text-decoration: none; }
+
+/* ── LANGUAGE SWITCHER ─────────────────────────────────────── */
+.lang-switcher {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin-left: auto;
+}
+
+.lang-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: var(--text-light);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.lang-btn:hover { background: rgba(255,107,0,0.3); }
+
+.lang-btn.lang-active {
+    background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+    border-color: var(--orange);
+    color: #fff;
+}
 
 /* ── UTILITIES ─────────────────────────────────────────────── */
 .text-center { text-align: center; }
