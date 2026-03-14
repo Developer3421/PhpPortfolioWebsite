@@ -195,7 +195,7 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🔄 Insait Converter</h1>
+    <h1><span class="hero-icon">🔄</span> Insait Converter</h1>
     <p><?= $t['hero_sub'] ?></p>
 </section>
 

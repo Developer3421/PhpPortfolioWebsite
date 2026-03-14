@@ -55,7 +55,7 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>📋 Insait Tasks</h1>
+    <h1><span class="hero-icon">📋</span> Insait Tasks</h1>
     <p><?= $t['hero_sub'] ?></p>
 </section>
 

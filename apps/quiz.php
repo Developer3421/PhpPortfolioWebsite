@@ -137,7 +137,7 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🎯 Insait Quiz</h1>
+    <h1><span class="hero-icon">🎯</span> Insait Quiz</h1>
     <p><?= $t['hero_sub'] ?> — <?= $totalQ ?> <?= $lang === 'de' ? 'Fragen' : 'questions' ?></p>
 </section>
 

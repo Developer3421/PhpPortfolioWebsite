@@ -29,7 +29,7 @@ require __DIR__ . '/../partials/nav.php';
 ?>
 
 <section class="hero">
-    <h1>🧮 Insait Calculator</h1>
+    <h1><span class="hero-icon">🧮</span> Insait Calculator</h1>
     <p><?= $t['hero_sub'] ?></p>
 </section>
 
